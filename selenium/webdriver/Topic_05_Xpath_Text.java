@@ -42,5 +42,5 @@ public class Topic_05_Xpath_Text {
     @AfterClass
     public void afterClass() {
         driver.quit();
-    }
+    } 
 }
