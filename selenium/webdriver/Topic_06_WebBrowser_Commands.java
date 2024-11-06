@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import java.net.URL;
 import java.time.Duration;
 
-public class Topic_05_WebBrowser_Commands {
+public class Topic_06_WebBrowser_Commands {
     WebDriver driver;
     @BeforeClass
     public void BeforeClass(){
@@ -58,7 +58,7 @@ public class Topic_05_WebBrowser_Commands {
         // Switch từ frame con ra frame cha (nhiều frame lồng nhau)
         driver.switchTo().parentFrame();
         // Window
-        driver.switchTo().window(); //*
+        //driver.switchTo().window(); //*
         driver.switchTo().newWindow(WindowType.TAB).get("");
         driver.switchTo().newWindow(WindowType.WINDOW).get("");
         // Set timeout để tìm element (áp dụng cho 2 hàm findelement/findelements)
@@ -73,7 +73,7 @@ public class Topic_05_WebBrowser_Commands {
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(30));
         // Cookie
         driver.manage().getCookies();
-        driver.manage().addCookie();
+        //driver.manage().addCookie();
         // Browser: fullscreen/maximize/minimize
         driver.manage().window().maximize(); //*
         driver.manage().window().minimize();
@@ -99,7 +99,7 @@ public class Topic_05_WebBrowser_Commands {
         driver.navigate().refresh();
         // Mở 1 URL
         driver.navigate().to("https://www.facebook.com/login");
-        driver.navigate().to(new URL("https://www.facebook.com/login"));
+        //driver.navigate().to(new URL("https://www.facebook.com/login"));
 
     }
     @AfterClass
