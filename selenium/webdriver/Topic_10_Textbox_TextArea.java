@@ -56,6 +56,78 @@ public class Topic_10_Textbox_TextArea {
         Assert.assertEquals(driver.findElement(By.cssSelector("li.success-msg")).getText(),
                 "Your review has been accepted for moderation.");
     }
+    @Test
+    public void TC_02_OrangeHRM() throws InterruptedException {
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        String firstName = "Donald";
+        String lastName = "Trump";
+        String userName = "donald" + new Random().nextInt(9999);
+        String password = "Donald123^%*";
+        String passpostNumber = "5555-6666-7777-8888";
+        String passpostComment = "Automation FC\nBest Tour";
+        driver.findElement(By.cssSelector("input[name='username']")).sendKeys("Admin");
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys("admin123");
+        driver.findElement(By.cssSelector("button[type='submit']")).click(); // C2: button.orangehrm-login-button
+        Thread.sleep(4000);
+        // Admin Employee
+        driver.findElement(By.xpath("//span[text()='PIM']")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+        driver.findElement(By.cssSelector("input[name='firstName']")).sendKeys(firstName);
+        driver.findElement(By.cssSelector("input[name='lastName']")).sendKeys(lastName);
+        String EmployeeID = driver.findElement(By
+                .xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getAttribute("value");
+        //driver.findElement(By.xpath("//p[text()='Create Login Details']/following-sibling::div//label")).click();
+        driver.findElement(By.xpath("//p[text()='Create Login Details']/following-sibling::div//label")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//label[text()='Username']/parent::div/following-sibling::div/input")).sendKeys(userName);
+        driver.findElement(By.xpath("//label[text()='Password']/parent::div/following-sibling::div/input")).sendKeys(password);
+        driver.findElement(By.xpath("//label[text()='Confirm Password']/parent::div/following-sibling::div/input")).sendKeys(password);
+        driver.findElement(By.xpath("//button[contains(string(),'Save')]")).click();
+        Thread.sleep(8000);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='firstName']")).getAttribute("value"),firstName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='lastName']")).getAttribute("value"),lastName);
+        Assert.assertEquals(driver.findElement(By.xpath(
+                "//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getAttribute("value"),EmployeeID);
+        Assert.assertTrue(driver.findElement(By.xpath(
+                "//label[text()='Employee Id']/parent::div/following-sibling::div/input")).isEnabled());
+        driver.findElement(By.xpath("//a[text()='Immigration']")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//h6[text()='Assigned Immigration Records']/following-sibling::button[contains(string(),'Add')]")).click();
+        driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).sendKeys(passpostNumber);
+        driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea")).sendKeys(passpostComment);
+        driver.findElement(By.xpath("//button[contains(string(),'Save')]")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("i.bi-pencil-fill")).click();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).getAttribute("value"),passpostNumber);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea]")).getAttribute("value"),passpostComment);
+        driver.findElement(By.cssSelector("p.oxd-userdropdown-name")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//a[text()='Logout']")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.cssSelector("input[name='username']")).sendKeys(userName);
+        driver.findElement(By.cssSelector("input[name='password']")).sendKeys(password);
+        driver.findElement(By.cssSelector("button[type='submit']")).click();
+        Thread.sleep(4000);
+        // Normal Employee
+        driver.findElement(By.xpath("//span[text()='My Info']")).click();
+        Thread.sleep(3000);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='firstName']")).getAttribute("value"),firstName);
+        Assert.assertEquals(driver.findElement(By.cssSelector("input[name='lastName']")).getAttribute("value"),lastName);
+        Assert.assertEquals(driver.findElement(By.xpath(
+                "//label[text()='Employee Id']/parent::div/following-sibling::div/input")).getAttribute("value"),EmployeeID);
+        Assert.assertFalse(driver.findElement(By.xpath(
+                "//label[text()='Employee Id']/parent::div/following-sibling::div/input")).isEnabled());
+        driver.findElement(By.xpath("//a[text()='Immigration']")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.cssSelector("i.bi-pencil-fill")).click();
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Number']/parent::div/following-sibling::div/input")).getAttribute("value"),passpostNumber);
+        Assert.assertEquals(driver.findElement(By.xpath("//label[text()='Comments']/parent::div/following-sibling::div/textarea']")).getAttribute("value"),passpostComment);
+
+
+    }
     @AfterClass
     public void afterClass() {
         driver.quit();
