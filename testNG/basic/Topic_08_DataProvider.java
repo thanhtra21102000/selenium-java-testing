@@ -1,5 +1,6 @@
 package basic;
 
+import graphql.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -7,9 +8,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import graphql.Assert;
-
-import java.util.concurrent.TimeUnit;
 
 public class Topic_08_DataProvider {
     WebDriver driver;
@@ -20,7 +18,7 @@ public class Topic_08_DataProvider {
     @BeforeClass
     public void beforeClass() {
         driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @Test(dataProvider = "loginData")
@@ -45,9 +43,9 @@ public class Topic_08_DataProvider {
     @DataProvider(name = "loginData")
     public Object[][] UserAndPasswordData() {
         return new Object[][]{
-                {"selenium_11_01@gmail.com", "111111", "65000"},
-                {"selenium_11_02@gmail.com", "111111", "65000"},
-                {"selenium_11_03@gmail.com", "111111", "65000"}
+                {"joebiden9357@gmail.com", "123456789", "65000"},
+                {"joebiden26266@gmail.com", "123456789", "65000"},
+                {"joebiden44489@gmail.com", "123456789", "65000"}
         };
     }
 
