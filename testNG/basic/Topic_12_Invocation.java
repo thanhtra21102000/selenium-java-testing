@@ -16,7 +16,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
-
 public class Topic_12_Invocation {
     WebDriver driver;
     Random rand;
@@ -84,7 +83,7 @@ public class Topic_12_Invocation {
 
         Assert.assertEquals(driver.findElement(By.id("firstname")).getAttribute("value"), firstName);
         Assert.assertEquals(driver.findElement(By.id("lastname")).getAttribute("value"), lastName);
-        Assert.assertEquals(driver.findElement(By.id("email")).getAttribute("value"), emailAddress);
+        Assert.assertEquals(driver.findElement(By.id("email")).getAttribute("value"), lastName);
 
         // Logout
         driver.findElement(By.cssSelector("div.account-cart-wrapper>a")).click();
@@ -103,5 +102,9 @@ public class Topic_12_Invocation {
     public void afterClass() throws IOException {
         outputStrem.flush();
         driver.quit();
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 }

@@ -1,14 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Web UI Automation Testing" verbose="1" parallel = "tests" thread-count="3">
+<suite name="Web UI Automation Testing" verbose="1" parallel = "methods" thread-count="3">
     <parameter name="environmentName" value="Prod"></parameter>
-    <listeners>
-        <listener class-name="listeners.ReportNGListener"></listener>
-    </listeners>
     <test name="Run on FIREFOX" preserve-order="false">
         <parameter name="browser" value="Firefox"></parameter>
         <classes>
-            <class name="basic.Topic_12_Invocation"/>
+            <class name="basic.Topic_13_Parallel_Method"/>
         </classes>
     </test>
 </suite>
